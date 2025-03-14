@@ -1,8 +1,11 @@
 import React from 'react'
+import Login from './components/Auth/Login'
 
 const App = () => {
   return (
-    <div className=' bg-cyan-700'>App</div>
+    <>
+      <Login />
+    </>
   )
 }
 
