@@ -24,15 +24,17 @@ const App = () => {
   const handleLogin = (email, password) => {
     if(email == "admin@me.com" && password == '123'){
       setUser('admin');
-      localStorage.setItem("loggedInUser",JSON.stringify({ role:"admin" }))
+      localStorage.setItem("loggedInUser",JSON.stringify({ role:"admin" }));
       
     }else if(authData){
-      const employee = authData.employees.find((e)=> email == e.email && password == e.password) 
+      const employee = authData.employees.find((e)=> email == e.email && password == e.password);
+      console.log(employee);
        
       if(employee){
+        console.log("Found the eail ad");
         setUser('employee');
         setLoggedInUserData(employee);
-        localStorage.setItem("loggedInUser",JSON.stringify({ role:"employee" }))
+        localStorage.setItem("loggedInUser",JSON.stringify({ role:"employee" }));
       }
 
     }
