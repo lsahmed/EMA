@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const CreateTask = () => {
+    const [taskTitle, setTaskTitle] = useState('');
+    const [date, setDate] = useState('');
+    const [description, setDescription] = useState('');
+    const [assignTo, setAssignTo] = useState('');
+    const [category, setCategory] = useState('');
+
+    const [task, setTask] = useState([])
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        setTask({taskTitle, description, date, category, accepted:false, newTask:true,completed:false,failed:false,})
+        
+        setTaskTitle("");
+        setDescription("");
+        setDate("");
+        setAssignTo("");
+        setCategory("");
+    }
     return (
         <div className="p-6 bg-gray-800/80 rounded-lg shadow-lg border border-emerald-500/30 mt-6">
             <h2 className="text-xl font-semibold text-emerald-400 mb-4">New Task</h2>
 
-            <form className="flex flex-wrap">
+            <form onSubmit={(e) => {
+                submitHandler(e);
+            }} className="flex flex-wrap">
                 <div className="w-1/2 pr-6">
                     <div className="mb-4">
                         <label className="text-sm block mb-1">Task Title</label>
                         <input
+                            value={taskTitle}
+                            onChange={(elem) => {
+                                setTaskTitle(elem.target.value);
+                            }}
                             className="w-full text-sm py-2 px-3 rounded bg-transparent border border-emerald-500/50 focus:border-emerald-400 focus:outline-none transition-colors"
                             type="text"
                             placeholder="Enter task title"
@@ -19,6 +43,10 @@ const CreateTask = () => {
                     <div className="mb-4">
                         <label className="text-sm text-emerald-300 block mb-1">Date</label>
                         <input
+                            value={date}
+                            onChange={(elem) => {
+                                setDate(elem.target.value)
+                            }}
                             className="w-full text-sm py-2 px-3 rounded bg-transparent border border-emerald-500/50 focus:border-emerald-400 focus:outline-none transition-colors"
                             type="date"
                         />
@@ -27,6 +55,10 @@ const CreateTask = () => {
                     <div className="mb-4">
                         <label className="text-sm text-emerald-300 block mb-1">Assign To</label>
                         <input
+                            value={assignTo}
+                            onChange={(elem) => {
+                                setAssignTo(elem.target.value)
+                            }}
                             className="w-full text-sm py-2 px-3 rounded bg-transparent border border-emerald-500/50 focus:border-emerald-400 focus:outline-none transition-colors"
                             type="text"
                             placeholder="Enter assignee name"
@@ -36,6 +68,10 @@ const CreateTask = () => {
                     <div className="mb-4">
                         <label className="text-sm text-emerald-300 block mb-1">Category</label>
                         <input
+                            value={category}
+                            onChange={(elem) => {
+                                setCategory(elem.target.value)
+                            }}
                             className="w-full text-sm py-2 px-3 rounded bg-transparent border border-emerald-500/50 focus:border-emerald-400 focus:outline-none transition-colors"
                             type="text"
                             placeholder="Enter category"
@@ -47,6 +83,10 @@ const CreateTask = () => {
                     <div className="mb-4">
                         <label className="text-sm text-emerald-300 block mb-1">Description</label>
                         <textarea
+                            value={description}
+                            onChange={(elem) => {
+                                setDescription(elem.target.value);
+                            }}
                             className="w-full h-56 text-sm py-2 px-3 rounded bg-transparent border border-emerald-500/50 focus:border-emerald-400 focus:outline-none transition-colors resize-none"
                             placeholder="Enter task description"
                         ></textarea>
